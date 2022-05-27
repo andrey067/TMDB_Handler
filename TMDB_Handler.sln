@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMDB_Handler", "TMDB_Handler", "{F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.API", "TMDB_Handler\Tmdb.API\Tmdb.API.csproj", "{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Core", "TMDB_Handler\Tmdb.Core\Tmdb.Core.csproj", "{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.CrossCutting", "TMDB_Handler\Tmdb.CrossCutting\Tmdb.CrossCutting.csproj", "{97918B9E-7096-4954-B6AB-F7889135C217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Domain", "TMDB_Handler\Tmdb.Domain\Tmdb.Domain.csproj", "{22151D7D-31F4-4851-9F88-96591A20195C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Infra", "TMDB_Handler\Tmdb.Infra\Tmdb.Infra.csproj", "{D54BD356-57F6-48F2-ACA4-4DAACD783F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Services", "TMDB_Handler\Tmdb.Services\Tmdb.Services.csproj", "{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97918B9E-7096-4954-B6AB-F7889135C217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97918B9E-7096-4954-B6AB-F7889135C217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97918B9E-7096-4954-B6AB-F7889135C217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97918B9E-7096-4954-B6AB-F7889135C217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22151D7D-31F4-4851-9F88-96591A20195C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22151D7D-31F4-4851-9F88-96591A20195C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22151D7D-31F4-4851-9F88-96591A20195C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22151D7D-31F4-4851-9F88-96591A20195C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D54BD356-57F6-48F2-ACA4-4DAACD783F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54BD356-57F6-48F2-ACA4-4DAACD783F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54BD356-57F6-48F2-ACA4-4DAACD783F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54BD356-57F6-48F2-ACA4-4DAACD783F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{97918B9E-7096-4954-B6AB-F7889135C217} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{22151D7D-31F4-4851-9F88-96591A20195C} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{D54BD356-57F6-48F2-ACA4-4DAACD783F46} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+	EndGlobalSection
+EndGlobal
