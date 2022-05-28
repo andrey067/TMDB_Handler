@@ -1,8 +1,9 @@
-namespace Tmdb.Domain.ValueObject
+using Tmdb.Domain.Entities;
+
+namespace Tmdb.Domain.Entities
 {
-    public class Movie
+    public class Movie : BaseEntity
     {
-        public int Id { get; private set; }
         public string Original_language { get; private set; }
         public string Original_title { get; private set; }
         public string Overview { get; private set; }

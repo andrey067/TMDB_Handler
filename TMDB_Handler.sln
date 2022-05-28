@@ -1,29 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMDB_Handler", "TMDB_Handler", "{F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.API", "TMDB_Handler\Tmdb.API\Tmdb.API.csproj", "{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.API", "TMDB_Handler\Tmdb.API\Tmdb.API.csproj", "{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Core", "TMDB_Handler\Tmdb.Core\Tmdb.Core.csproj", "{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Core", "TMDB_Handler\Tmdb.Core\Tmdb.Core.csproj", "{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.CrossCutting", "TMDB_Handler\Tmdb.CrossCutting\Tmdb.CrossCutting.csproj", "{97918B9E-7096-4954-B6AB-F7889135C217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Domain", "TMDB_Handler\Tmdb.Domain\Tmdb.Domain.csproj", "{22151D7D-31F4-4851-9F88-96591A20195C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Domain", "TMDB_Handler\Tmdb.Domain\Tmdb.Domain.csproj", "{22151D7D-31F4-4851-9F88-96591A20195C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Infra", "TMDB_Handler\Tmdb.Infra\Tmdb.Infra.csproj", "{D54BD356-57F6-48F2-ACA4-4DAACD783F46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Infra", "TMDB_Handler\Tmdb.Infra\Tmdb.Infra.csproj", "{D54BD356-57F6-48F2-ACA4-4DAACD783F46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Services", "TMDB_Handler\Tmdb.Services\Tmdb.Services.csproj", "{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Services", "TMDB_Handler\Tmdb.Services\Tmdb.Services.csproj", "{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.CrossCutting", "TMDB_Handler\Tmdb.CrossCutting\Tmdb.CrossCutting.csproj", "{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -34,10 +31,6 @@ Global
 		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97918B9E-7096-4954-B6AB-F7889135C217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97918B9E-7096-4954-B6AB-F7889135C217}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97918B9E-7096-4954-B6AB-F7889135C217}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97918B9E-7096-4954-B6AB-F7889135C217}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22151D7D-31F4-4851-9F88-96591A20195C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22151D7D-31F4-4851-9F88-96591A20195C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22151D7D-31F4-4851-9F88-96591A20195C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,13 +43,23 @@ Global
 		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B8ED7B3F-185A-42CD-BF7E-D95CE166614A} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{CE611DA2-59EF-44B2-A35C-0E70B7E060D8} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
-		{97918B9E-7096-4954-B6AB-F7889135C217} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{22151D7D-31F4-4851-9F88-96591A20195C} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{D54BD356-57F6-48F2-ACA4-4DAACD783F46} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {412AA465-9BDF-4F1E-A108-1A9A7A90E5C9}
 	EndGlobalSection
 EndGlobal

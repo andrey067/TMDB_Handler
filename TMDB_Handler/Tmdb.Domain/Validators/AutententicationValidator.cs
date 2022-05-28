@@ -1,11 +1,11 @@
-using FluentValidation;
+﻿using FluentValidation;
 using Tmdb.Domain.Entities;
 
 namespace Tmdb.Domain.Validators
 {
-    public class UserValidator : AbstractValidator<User>
+    public class AutententicationValidator : AbstractValidator<User>
     {
-        public UserValidator()
+        public AutententicationValidator()
         {
             RuleFor(x => x)
                 .NotEmpty()
@@ -25,7 +25,20 @@ namespace Tmdb.Domain.Validators
                 .WithMessage("O nome deve ter no mínimo 3 caracteres.")
 
                 .MaximumLength(80)
-                .WithMessage("O nome deve ter no máximo 80 caracteres.");            
+                .WithMessage("O nome deve ter no máximo 80 caracteres.");
+
+            RuleFor(x => x.Password)
+                .NotNull()
+                .WithMessage("A senha não pode ser nula.")
+
+                .NotEmpty()
+                .WithMessage("A senha não pode ser vazia.")
+
+                .MinimumLength(6)
+                .WithMessage("A senha deve ter no mínimo 6 caracteres.")
+
+                .MaximumLength(80)
+                .WithMessage("A senha deve ter no máximo 30 caracteres.");
 
             RuleFor(x => x.Email)
                 .NotNull()

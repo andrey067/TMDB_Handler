@@ -1,15 +1,27 @@
+using MediatR;
+using Tmdb.CrossCutting.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+ConfigureService.RegisterContext(builder.Services, builder.Configuration);
+ConfigureService.RegisterAutomapper(builder.Services);
+ConfigureService.ConfiguracaoDependenciasHandlers(builder.Services);
+ConfigureService.RegisterHash(builder.Services, builder.Configuration);
+ConfigureService.RegisterServices(builder.Services, builder.Configuration);
+ConfigureService.RegisterAuthentication(builder.Services, builder.Configuration);
+ConfigureService.RegisterSwagger(builder.Services);
+
+ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
+builder.Services.AddMediatR(typeof(Program));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+await ConfigureService.EnsureDBExists(app.Services);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -18,6 +30,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
