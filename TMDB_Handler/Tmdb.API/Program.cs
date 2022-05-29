@@ -14,6 +14,7 @@ ConfigureService.RegisterHash(builder.Services, builder.Configuration);
 ConfigureService.RegisterServices(builder.Services, builder.Configuration);
 ConfigureService.RegisterAuthentication(builder.Services, builder.Configuration);
 ConfigureService.RegisterSwagger(builder.Services);
+ConfigureService.RegisterRefit(builder.Services, builder.Configuration);
 
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services);
 builder.Services.AddMediatR(typeof(Program));

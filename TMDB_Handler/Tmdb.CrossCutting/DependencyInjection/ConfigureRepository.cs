@@ -9,6 +9,7 @@ namespace Tmdb.CrossCutting.DependencyInjection
         public static void ConfigureDependenciesRepository(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<ITbdmSearchRepository, TbdmSearchRepository>();
             services.AddScoped<IAutenticationRepository, AutenticationRepository>();
         }
     }

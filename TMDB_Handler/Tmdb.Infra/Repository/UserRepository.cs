@@ -35,9 +35,10 @@ namespace Tmdb.Infra.Repository
             return user.FirstOrDefault();
         }
 
-        public Task<User> GetUser(int Id)
+        public async Task<User> GetUser(int Id)
         {
-            throw new NotImplementedException();
+            var user = await _userDbSet.Where(x => x.Id == Id).ToListAsync();
+            return user.FirstOrDefault();
         }
 
         public Task Remove(int id)
@@ -50,9 +51,11 @@ namespace Tmdb.Infra.Repository
             throw new NotImplementedException();
         }
 
-        public Task<User> Update(User user)
+        public async Task<User> Update(User user)
         {
-            throw new NotImplementedException();
+            _userDbSet.Update(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
     }
 }

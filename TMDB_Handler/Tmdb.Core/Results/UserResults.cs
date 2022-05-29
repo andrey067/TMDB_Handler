@@ -21,5 +21,35 @@
                 Data = null
             };
         }
+
+        public static ResultModel UserNotFound()
+        {
+            return new ResultModel
+            {
+                Message = "Usuario não encontrado",
+                Success = false,
+                Data = null
+            };
+        }
+
+        public static ResultModel UserFound(object data)
+        {
+            return new ResultModel
+            {
+                Message = "Usuario(s) encontrados",
+                Success = true,
+                Data = data
+            };
+        }
+
+        public static ResultModel MaxProfile()
+        {
+            return new ResultModel
+            {
+                Message = "Usuario não atingiu limite de perfis",
+                Success = false,
+                Data = null
+            };
+        }
     }
 }

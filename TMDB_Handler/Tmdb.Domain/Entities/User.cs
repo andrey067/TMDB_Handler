@@ -14,7 +14,11 @@ namespace Tmdb.Domain.Entities
         public IReadOnlyCollection<Profile> Profiles => _profiles;
 
         //EF Core
-        protected User() { }
+        protected User()
+        {
+            _profiles = new();
+            _errors = new List<string>();
+        }
 
         public User(string name, string email, DateTime birthday)
         {
@@ -31,13 +35,17 @@ namespace Tmdb.Domain.Entities
             Email = email;
             Birthday = birthday;
             Password = password;
-            _profiles = new();
             _errors = new List<string>();
             Validate();
         }
 
         //Autovalida
         public bool Validate() => base.Validate(new UserValidator(), this);
-        public bool AutenticationValidate() => base.Validate(new AutententicationValidator(), this);
+        //public bool AutenticationValidate() => base.Validate(new AutententicationValidator(), this);
+
+        public void AddProfile(Profile profile)
+        {
+            _profiles.Add(profile);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using MediatR;
 using Tmdb.Core.Results;
 using Tmdb.Domain.Entities;
+using Tmdb.Domain.ValueObject;
 using Tmdb.Infra.Interfaces;
 using Tmdb.Infra.UseCases;
 
@@ -30,7 +31,7 @@ namespace Tmdb.Services.Handlers.Commands
             var autenticationUser = new User(request.Name, request.Email, _argon2IdHasher.Hash(request.Password), request.Birthday);
 
             user.Validate();
-            user.AutenticationValidate();
+            user.AddProfile(Profile.CreateHostProfile(user.Name));
             await _userRepository.Create(user);
             await _autenticationRepository.Create(autenticationUser);
             return UserResults.UserCreated(user);

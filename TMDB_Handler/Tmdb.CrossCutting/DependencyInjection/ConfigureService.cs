@@ -8,13 +8,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Refit;
 using System.Text;
 using Tmdb.API.ViewModels;
+using Tmdb.Core.DTOs;
 using Tmdb.Core.Options;
 using Tmdb.Core.Results;
+using Tmdb.CrossCutting.Http;
 using Tmdb.Infra.Context;
+using Tmdb.Infra.Interfaces;
 using Tmdb.Infra.UseCases;
 using Tmdb.Services.Handlers.Commands;
+using Tmdb.Services.Handlers.Queries;
 using Tmdb.Services.Token;
 using Tmdb.Services.UseCases;
 
@@ -48,6 +53,7 @@ namespace Tmdb.CrossCutting.DependencyInjection
             {
                 cfg.CreateMap<CreateUserDto, CreateUserCommand>();
                 cfg.CreateMap<LoginDto, AuthenticationCommand>();
+                cfg.CreateMap<AddProfileDto, AddProfileCommand>();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());
@@ -57,6 +63,9 @@ namespace Tmdb.CrossCutting.DependencyInjection
         {
             services.AddScoped<IRequestHandler<CreateUserCommand, ResultModel>, CreateUserHandler>();
             services.AddScoped<IRequestHandler<AuthenticationCommand, ResultModel>, AuthenticationHandler>();
+            services.AddScoped<IRequestHandler<FindAllMoviesRequest, ResultModel>, FindAllMoviesHandler>();
+            services.AddScoped<IRequestHandler<AddProfileCommand, ResultModel>, AddProfileHandler>();
+            services.AddScoped<IRequestHandler<GetAllProfilesRequest, ResultModel>, GetAllProfilesHandler>();
         }
 
         public static void RegisterHash(IServiceCollection services, IConfiguration configuration)
@@ -79,11 +88,12 @@ namespace Tmdb.CrossCutting.DependencyInjection
         {
             services.AddScoped<ITokenGenerator, TokenGeneretor>();
             services.Configure<SettingsJWTOptions>(configuration.GetSection(SettingsJWTOptions.AppJwtSettings));
+            services.Configure<TmdbOptions>(configuration.GetSection(TmdbOptions.TmdbOptionsSettings));
         }
 
         public static void RegisterAuthentication(IServiceCollection services, IConfiguration configuration)
         {
-            var secretKey = configuration["Jwt:Key"];
+            var secretKey = configuration["AppJwtSettings:SecretKey"];
 
             services.AddAuthentication(x =>
             {
@@ -131,6 +141,18 @@ namespace Tmdb.CrossCutting.DependencyInjection
                 }
                 });
             });
+        }
+
+        public static void RegisterRefit(IServiceCollection services, IConfiguration configuration)
+        {
+            string apikey = configuration["TmdbOptionsSettings:SecretKey"];
+
+            services.AddScoped(s => new ApiKeyMessageHandler(apikey));
+
+            services.AddRefitClient<ITbdmSearchRepository>().ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("https://api.themoviedb.org/3");
+            }).AddHttpMessageHandler<ApiKeyMessageHandler>();
         }
     }
 }

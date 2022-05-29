@@ -14,14 +14,12 @@ namespace Tmdb.Services.Handlers.Commands
         private readonly IArgon2IdHasher _argon2IdHasher;
         private readonly IAutenticationRepository _autenticationRepository;
         private readonly ITokenGenerator _tokeGenerator;
-        private readonly SettingsJWTOptions _configuracaoJWTOptions;
 
         public AuthenticationHandler(IArgon2IdHasher argon2IdHasher, IAutenticationRepository autenticationRepository, ITokenGenerator tokeGenerator, IOptions<SettingsJWTOptions> configuracaoJWTOptions)
         {
             _argon2IdHasher = argon2IdHasher;
             _autenticationRepository = autenticationRepository;
             _tokeGenerator = tokeGenerator;
-            _configuracaoJWTOptions = configuracaoJWTOptions.Value;
         }
 
         public async Task<ResultModel> Handle(AuthenticationCommand request, CancellationToken cancellationToken)

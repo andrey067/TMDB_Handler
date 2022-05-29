@@ -8,7 +8,7 @@ namespace Tmdb.Infra.Context
     {
         public TmdbContext(DbContextOptions<TmdbContext> options) : base(options) { }
         public DbSet<User> User => Set<User>();
-        //public DbSet<Movie> Movie => Set<Movie>();
+        public DbSet<Movie> Movie => Set<Movie>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
