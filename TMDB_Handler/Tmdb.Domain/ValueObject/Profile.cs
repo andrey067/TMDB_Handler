@@ -14,6 +14,7 @@ namespace Tmdb.Domain.ValueObject
         {
             Name = name;
             TypeProfile = (int)(ETypeProfile)typeProfile;
+            Movies = new();
         }
 
         public static Profile CreateHostProfile(string name)

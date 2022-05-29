@@ -19,6 +19,7 @@ namespace Tmdb.Services.Handlers.Commands
         public async Task<ResultModel> Handle(AddProfileCommand request, CancellationToken cancellationToken)
         {
             User user = await _userRepository.GetUser(request.UserId);
+
             if (user is null)
                 UserResults.UserNotFound();
 
@@ -34,6 +35,5 @@ namespace Tmdb.Services.Handlers.Commands
 
             return UserResults.UserCreated(user);
         }
-
     }
 }

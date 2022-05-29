@@ -51,5 +51,25 @@
                 Data = null
             };
         }
+
+        public static ResultModel MovieNotFound()
+        {
+            return new ResultModel
+            {
+                Message = "Filme não encontrado",
+                Success = false,
+                Data = null
+            };
+        }
+
+        public static ResultModel AddedMovie(object data)
+        {
+            return new ResultModel
+            {
+                Message = "Filme adicionado",
+                Success = true,
+                Data = data
+            };
+        }
     }
 }

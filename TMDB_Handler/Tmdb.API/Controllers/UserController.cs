@@ -48,15 +48,5 @@ namespace Tmdb.API.Controllers
 
             return Ok(resultadoCommando);
         }
-
-        [HttpPut]
-        [Route("/api/v1/users/addmovie")]
-        public async Task<IActionResult> AddMovieAsync([FromBody] AddMovieDto movieViewModel)
-        {
-            var movieCommand = _mapper.Map<AddMovieCommand>(movieViewModel);
-            var resultadoCommando = await _mediator.Send(movieCommand);
-
-            return Ok(resultadoCommando);
-        }
     }
 }

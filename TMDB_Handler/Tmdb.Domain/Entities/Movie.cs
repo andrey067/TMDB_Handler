@@ -16,6 +16,8 @@ namespace Tmdb.Domain.Entities
         public bool Video { get; set; }
         public double Vote_average { get; set; }
         public int Vote_count { get; set; }
+        public bool Watched { get; set; } = false;
+        public bool Watchlist { get; set; } = false;
 
         public Movie(int id, bool adult,
             string backdrop_path,

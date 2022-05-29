@@ -15,6 +15,7 @@ using Tmdb.Core.DTOs;
 using Tmdb.Core.Options;
 using Tmdb.Core.Results;
 using Tmdb.CrossCutting.Http;
+using Tmdb.Domain.Entities;
 using Tmdb.Infra.Context;
 using Tmdb.Infra.Interfaces;
 using Tmdb.Infra.UseCases;
@@ -54,6 +55,11 @@ namespace Tmdb.CrossCutting.DependencyInjection
                 cfg.CreateMap<CreateUserDto, CreateUserCommand>();
                 cfg.CreateMap<LoginDto, AuthenticationCommand>();
                 cfg.CreateMap<AddProfileDto, AddProfileCommand>();
+                cfg.CreateMap<AddMovieDto, AddMovieCommand>();
+                cfg.CreateMap<TmdbResults, Movie>();
+                cfg.CreateMap<SuggestedDto, GetMoviesSuggestedRequest>();
+                cfg.CreateMap<AddWatchListDto, AddWatchListCommand>();
+                cfg.CreateMap<AddWatchedDto, AddWatchedCommand>();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());
@@ -66,6 +72,11 @@ namespace Tmdb.CrossCutting.DependencyInjection
             services.AddScoped<IRequestHandler<FindAllMoviesRequest, ResultModel>, FindAllMoviesHandler>();
             services.AddScoped<IRequestHandler<AddProfileCommand, ResultModel>, AddProfileHandler>();
             services.AddScoped<IRequestHandler<GetAllProfilesRequest, ResultModel>, GetAllProfilesHandler>();
+            services.AddScoped<IRequestHandler<AddMovieCommand, ResultModel>, AddMovieHandler>();
+            services.AddScoped<IRequestHandler<GetMoviesSuggestedRequest, ResultModel>, GetMoviesSuggestedHandler>();
+            services.AddScoped<IRequestHandler<SearchMovieRequest, ResultModel>, SearchMovieHandler>();
+            services.AddScoped<IRequestHandler<AddWatchListCommand, ResultModel>, AddWatchListHandler>();
+            services.AddScoped<IRequestHandler<AddWatchedCommand, ResultModel>, AddWatchedHandler>();
         }
 
         public static void RegisterHash(IServiceCollection services, IConfiguration configuration)
@@ -146,12 +157,13 @@ namespace Tmdb.CrossCutting.DependencyInjection
         public static void RegisterRefit(IServiceCollection services, IConfiguration configuration)
         {
             string apikey = configuration["TmdbOptionsSettings:SecretKey"];
+            string baseUrl = configuration["TmdbOptionsSettings:BaseUrl"];
 
             services.AddScoped(s => new ApiKeyMessageHandler(apikey));
 
             services.AddRefitClient<ITbdmSearchRepository>().ConfigureHttpClient(c =>
             {
-                c.BaseAddress = new Uri("https://api.themoviedb.org/3");
+                c.BaseAddress = new Uri(baseUrl);
             }).AddHttpMessageHandler<ApiKeyMessageHandler>();
         }
     }
