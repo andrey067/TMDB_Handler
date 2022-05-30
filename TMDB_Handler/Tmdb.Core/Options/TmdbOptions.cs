@@ -3,6 +3,6 @@
     public class TmdbOptions
     {
         public const string TmdbOptionsSettings = "TmdbOptionsSettings";
-        public string SecretKey { get; set; } = string.Empty;
+        public string ApitKey { get; set; } = string.Empty;
     }
 }

@@ -156,7 +156,7 @@ namespace Tmdb.CrossCutting.DependencyInjection
 
         public static void RegisterRefit(IServiceCollection services, IConfiguration configuration)
         {
-            string apikey = configuration["TmdbOptionsSettings:SecretKey"];
+            string apikey = configuration["TmdbOptionsSettings:ApitKey"];
             string baseUrl = configuration["TmdbOptionsSettings:BaseUrl"];
 
             services.AddScoped(s => new ApiKeyMessageHandler(apikey));

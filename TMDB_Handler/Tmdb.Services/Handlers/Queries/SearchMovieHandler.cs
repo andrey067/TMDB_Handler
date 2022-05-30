@@ -22,7 +22,7 @@ namespace Tmdb.Services.Handlers.Queries
 
         public async Task<ResultModel> Handle(SearchMovieRequest request, CancellationToken cancellationToken)
         {
-            string querySearh = $"{_configuration["TmdbOptionsSettings:BaseUrl"]}/search/movie?api_key={_configuration["TmdbOptionsSettings:SecretKey"]}&query={request.Search}";
+            string querySearh = $"{_configuration["TmdbOptionsSettings:BaseUrl"]}/search/movie?api_key={_configuration["TmdbOptionsSettings:ApitKey"]}&query={request.Search}";
             var client = new HttpClient();
 
             using (var response = await client.GetAsync(querySearh))
