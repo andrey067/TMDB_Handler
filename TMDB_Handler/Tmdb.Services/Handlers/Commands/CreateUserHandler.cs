@@ -21,16 +21,23 @@ namespace Tmdb.Services.Handlers.Commands
 
         public async Task<ResultModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var userExist = await _userRepository.GetByEmail(request.Email);
-            if (userExist != null)
-                return UserResults.UserCreated("Já existe usuario cadastrado");
+            try
+            {
+                var userExist = await _userRepository.GetByEmail(request.Email);
+                if (userExist != null)
+                    return UserResults.UserCreated("Já existe usuario cadastrado");
 
-            var user = new User(request.Name, request.Email, _argon2IdHasher.Hash(request.Password), request.Birthday);
+                var user = new User(request.Name, request.Email, _argon2IdHasher.Hash(request.Password), request.Birthday);
 
-            user.Validate();
-            user.AddProfile(Profile.CreateHostProfile(user.Name));
-            await _userRepository.Create(user);
-            return UserResults.UserCreated(user);
+                user.Validate();
+                user.AddProfile(Profile.CreateHostProfile(user.Name));
+                await _userRepository.Create(user);
+                return UserResults.UserCreated(user);
+            }
+            catch (Exception ex)
+            {
+                return ResultBase.ApplicationErrorMessage(ex.Message);
+            }
         }
     }
 }

@@ -8,11 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Tmdb.API\Tmdb.API.csproj" />
     <ProjectReference Include="..\..\Tmdb.Core\Tmdb.Core.csproj" />
     <ProjectReference Include="..\..\Tmdb.Domain\Tmdb.Domain.csproj" />
+    <ProjectReference Include="..\..\Tmdb.Infra\Tmdb.Infra.csproj" />
   </ItemGroup>
 
 </Project>

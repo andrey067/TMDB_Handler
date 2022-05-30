@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tmdb.API.ViewModels;
 using Tmdb.Core.DTOs;
@@ -32,6 +33,7 @@ namespace Tmdb.API.Controllers
 
         [HttpGet]
         [Route("getProfiles")]
+        [Authorize]
         public async Task<IActionResult> GetAllProfiles(int userId)
         {
             var userCommand = new GetAllProfilesRequest(userId);
@@ -42,6 +44,7 @@ namespace Tmdb.API.Controllers
 
         [HttpPut]
         [Route("addprofile")]
+        [Authorize]
         public async Task<IActionResult> AddProfileAsync([FromBody] AddProfileDto profileViewModel)
         {
             var profileCommand = _mapper.Map<AddProfileCommand>(profileViewModel);

@@ -18,22 +18,29 @@ namespace Tmdb.Services.Handlers.Commands
 
         public async Task<ResultModel> Handle(AddProfileCommand request, CancellationToken cancellationToken)
         {
-            User user = await _userRepository.GetUser(request.UserId);
+            try
+            {
+                User user = await _userRepository.GetUser(request.UserId);
 
-            if (user is null)
-                return UserResults.UserNotFound();
+                if (user is null)
+                    return UserResults.UserNotFound();
 
-            if (user.Profiles.Count() >= _maxProfileCount)
-                return UserResults.MaxProfile();
+                if (user.Profiles.Count() >= _maxProfileCount)
+                    return UserResults.MaxProfile();
 
-            if (user.Profiles.Any(profile => profile.Name.Equals(request.NameProfile)))
-                return UserResults.UserAlreadyExists();
+                if (user.Profiles.Any(profile => profile.Name.Equals(request.NameProfile)))
+                    return UserResults.UserAlreadyExists();
 
-            user.AddProfile(Profile.CreateGuestProfile(request.NameProfile));
-            user.Validate();
-            await _userRepository.Update(user);
+                user.AddProfile(Profile.CreateGuestProfile(request.NameProfile));
+                user.Validate();
+                await _userRepository.Update(user);
 
-            return UserResults.UserCreated(user);
+                return UserResults.UserCreated(user);
+            }
+            catch (Exception ex)
+            {
+                return ResultBase.ApplicationErrorMessage(ex.Message);
+            }
         }
     }
 }

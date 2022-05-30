@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tmdb.Core.DTOs;
 using Tmdb.Services.UseCases;
@@ -20,7 +21,7 @@ namespace Tmdb.API.Controllers
 
         [HttpPost]
         [Route("find-all-movies")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> FindAllMovies()
         {
             var result = await _mediator.Send(new FindAllMoviesRequest());
@@ -30,6 +31,7 @@ namespace Tmdb.API.Controllers
 
         [HttpPut]
         [Route("add-movie")]
+        [Authorize]
         public async Task<IActionResult> AddMovieAsync([FromBody] AddMovieDto movieViewModel)
         {
             var movieCommand = _mapper.Map<AddMovieCommand>(movieViewModel);
@@ -40,6 +42,7 @@ namespace Tmdb.API.Controllers
 
         [HttpGet]
         [Route("get-movies-suggested")]
+        [Authorize]
         public async Task<IActionResult> GetMoviesSuggested([FromQuery] SuggestedDto suggestedDto)
         {
             var comandResult = await _mediator.Send(new GetMoviesSuggestedRequest(suggestedDto.UserId, suggestedDto.ProfileName));
@@ -49,6 +52,7 @@ namespace Tmdb.API.Controllers
 
         [HttpGet]
         [Route("search-movie")]
+        [Authorize]
         public async Task<IActionResult> SearchMovie([FromQuery] string search)
         {
             var comandResult = await _mediator.Send(new SearchMovieRequest(search));
@@ -58,6 +62,7 @@ namespace Tmdb.API.Controllers
 
         [HttpPut]
         [Route("add-watch-list")]
+        [Authorize]
         public async Task<IActionResult> AddWatchList([FromQuery] AddWatchListDto addWatchListDto)
         {
             var addwatchlist = _mapper.Map<AddWatchListCommand>(addWatchListDto);
@@ -69,6 +74,7 @@ namespace Tmdb.API.Controllers
 
         [HttpPut]
         [Route("add-watched")]
+        [Authorize]
         public async Task<IActionResult> AddWatched([FromQuery] AddWatchedDto addWatchListDto)
         {
             var addwatchlist = _mapper.Map<AddWatchedCommand>(addWatchListDto);

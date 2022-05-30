@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Tmdb.Infra.Context;
 
-namespace Tmdb.Infra.Tests
+namespace Fixtures
 {
-    public class BaseTest
+    public class DbTests
     {
         private string dataBaseName = $"dbApiTest_{Guid.NewGuid().ToString().Replace("-", string.Empty)}";
         public ServiceProvider ServiceProvider { get; private set; }
 
-        public BaseTest()
+        public DbTests()
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddDbContext<TmdbContext>(options =>

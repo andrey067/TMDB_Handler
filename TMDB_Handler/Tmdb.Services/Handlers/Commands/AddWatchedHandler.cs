@@ -14,21 +14,27 @@ namespace Tmdb.Services.Handlers.Commands
 
         public async Task<ResultModel> Handle(AddWatchedCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUser(request.UserId);
-            if (user is null)
-                return UserResults.UserNotFound();
-
-            user.Profiles.ToList().ForEach(profile =>
+            try
             {
-                profile.Movies.ToList().ForEach(movie =>
-                {
-                    if (movie.Id == request.MovieId)
-                        movie.Watched = true;
-                });
-            });
+                var user = await _userRepository.GetUser(request.UserId);
+                if (user is null)
+                    return UserResults.UserNotFound();
 
-            var userUpdated = await _userRepository.Update(user);
-            return MovieResult.AddWatched(userUpdated);
+                user.Profiles.ToList().ForEach(profile =>
+                {
+                    profile.Movies.ToList().ForEach(movie =>
+                    {
+                        if (movie.Id == request.MovieId)
+                            movie.Watched = true;
+                    });
+                });
+                var userUpdated = await _userRepository.Update(user);
+                return MovieResult.AddWatched(userUpdated);
+            }
+            catch (Exception ex)
+            {
+                return ResultBase.ApplicationErrorMessage(ex.Message);
+            }
         }
     }
 }

@@ -9,15 +9,12 @@ using Tmdb.Infra.Repository;
 
 namespace Tmdb.Infra.Tests
 {
-    public class PersistenceTests : IClassFixture<BaseTest>, IDisposable
+    public class PersistenceTests : IClassFixture<DbTests>, IDisposable
     {
         private ServiceProvider _serviceProvider;
         private TmdbContext _tmdbContext;
 
-        public PersistenceTests(BaseTest context)
-        {
-            _serviceProvider = context.ServiceProvider;
-        }
+        public PersistenceTests(DbTests context) => _serviceProvider = context.ServiceProvider;
 
         [Trait("Persistencia de Dados", "User")]
         [Fact(DisplayName = "É possivel Persistir a usuario")]
@@ -73,6 +70,5 @@ namespace Tmdb.Infra.Tests
         {
             _tmdbContext.Database.EnsureDeleted();
         }
-
     }
 }
