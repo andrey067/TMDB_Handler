@@ -21,7 +21,7 @@ namespace Tmdb.Services.Handlers.Commands
             User user = await _userRepository.GetUser(request.UserId);
 
             if (user is null)
-                UserResults.UserNotFound();
+                return UserResults.UserNotFound();
 
             if (user.Profiles.Count() >= _maxProfileCount)
                 return UserResults.MaxProfile();

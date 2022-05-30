@@ -8,7 +8,7 @@ namespace Tmdb.Domain.ValueObject
         public int UserId { get; private set; }
         public string Name { get; private set; }
         public int TypeProfile { get; private set; }
-        public List<Movie> Movies { get; private set; }
+        public List<Movie>? Movies { get; private set; }
 
         private Profile(string name, int typeProfile)
         {

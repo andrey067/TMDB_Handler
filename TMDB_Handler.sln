@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32228.430
+VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMDB_Handler", "TMDB_Handler", "{F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Services", "TMDB_Handler\Tmdb.Services\Tmdb.Services.csproj", "{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.CrossCutting", "TMDB_Handler\Tmdb.CrossCutting\Tmdb.CrossCutting.csproj", "{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F361DC43-90EE-4EFB-AF67-DC6C3264119B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Infra.Tests", "TMDB_Handler\Tests\Tmdb.Infra.Tests\Tmdb.Infra.Tests.csproj", "{06A30107-3D64-4C08-99D8-FC3694F1048B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixtures", "TMDB_Handler\Tests\Fixtures\Fixtures.csproj", "{C0F2DC5E-4688-47EC-8602-910F5FF06618}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,14 @@ Global
 		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A30107-3D64-4C08-99D8-FC3694F1048B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A30107-3D64-4C08-99D8-FC3694F1048B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A30107-3D64-4C08-99D8-FC3694F1048B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A30107-3D64-4C08-99D8-FC3694F1048B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F2DC5E-4688-47EC-8602-910F5FF06618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F2DC5E-4688-47EC-8602-910F5FF06618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F2DC5E-4688-47EC-8602-910F5FF06618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F2DC5E-4688-47EC-8602-910F5FF06618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +72,9 @@ Global
 		{D54BD356-57F6-48F2-ACA4-4DAACD783F46} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{F4203108-E4D6-4CBF-ADF2-C4D88CCE5619} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
 		{15DEFDA6-1663-43E7-8CA1-CC3E740EBD6E} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{F361DC43-90EE-4EFB-AF67-DC6C3264119B} = {F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}
+		{06A30107-3D64-4C08-99D8-FC3694F1048B} = {F361DC43-90EE-4EFB-AF67-DC6C3264119B}
+		{C0F2DC5E-4688-47EC-8602-910F5FF06618} = {F361DC43-90EE-4EFB-AF67-DC6C3264119B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {412AA465-9BDF-4F1E-A108-1A9A7A90E5C9}

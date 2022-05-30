@@ -8,6 +8,7 @@ using Tmdb.Services.UseCases;
 
 namespace Tmdb.API.Controllers
 {
+    [Route("/api/v1/users/")]
     public class UserController : BaseController
     {
         private readonly IMapper _mapper;
@@ -20,7 +21,7 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpPost]
-        [Route("/api/v1/users/create")]
+        [Route("createUser")]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserDto userViewModel)
         {
             var userCommand = _mapper.Map<CreateUserCommand>(userViewModel);
@@ -30,7 +31,7 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/getProfiles")]
+        [Route("getProfiles")]
         public async Task<IActionResult> GetAllProfiles(int userId)
         {
             var userCommand = new GetAllProfilesRequest(userId);
@@ -40,7 +41,7 @@ namespace Tmdb.API.Controllers
 
 
         [HttpPut]
-        [Route("/api/v1/users/addprofile")]
+        [Route("addprofile")]
         public async Task<IActionResult> AddProfileAsync([FromBody] AddProfileDto profileViewModel)
         {
             var profileCommand = _mapper.Map<AddProfileCommand>(profileViewModel);

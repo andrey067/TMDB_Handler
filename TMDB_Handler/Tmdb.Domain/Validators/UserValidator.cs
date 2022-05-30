@@ -42,6 +42,19 @@ namespace Tmdb.Domain.Validators
 
                 .Matches(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$")
                 .WithMessage("O email informado não é válido.");
+
+            RuleFor(x => x.Password)
+               .NotNull()
+               .WithMessage("A senha não pode ser nula.")
+
+               .NotEmpty()
+               .WithMessage("A senha não pode ser vazia.")
+
+               .MinimumLength(6)
+               .WithMessage("A senha deve ter no mínimo 6 caracteres.")
+
+               .MaximumLength(80)
+               .WithMessage("A senha deve ter no máximo 30 caracteres.");
         }
     }
 }
