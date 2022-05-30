@@ -23,11 +23,8 @@ var app = builder.Build();
 
 await ConfigureService.EnsureDBExists(app.Services);
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
