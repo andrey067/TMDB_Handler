@@ -11,30 +11,33 @@ namespace Tmdb.Services.Handlers.Commands
     public class CreateUserHandler : IRequestHandler<CreateUserCommand, ResultModel>
     {
         private IUserRepository _userRepository;
-        private IAutenticationRepository _autenticationRepository;
         private readonly IArgon2IdHasher _argon2IdHasher;
 
-        public CreateUserHandler(IUserRepository userRepository, IAutenticationRepository autenticationRepository, IArgon2IdHasher argon2IdHasher)
+        public CreateUserHandler(IUserRepository userRepository, IArgon2IdHasher argon2IdHasher)
         {
             _userRepository = userRepository;
-            _autenticationRepository = autenticationRepository;
             _argon2IdHasher = argon2IdHasher;
         }
 
         public async Task<ResultModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var userExist = await _autenticationRepository.GetByEmail(request.Email);
-            if (userExist != null)
-                return UserResults.UserCreated("Já existe usuario cadastrado");
+            try
+            {
+                var userExist = await _userRepository.GetByEmail(request.Email);
+                if (userExist != null)
+                    return UserResults.UserCreated("Já existe usuario cadastrado");
 
-            var user = new User(request.Name, request.Email, request.Birthday);
-            var autenticationUser = new User(request.Name, request.Email, _argon2IdHasher.Hash(request.Password), request.Birthday);
+                var user = new User(request.Name, request.Email, _argon2IdHasher.Hash(request.Password), request.Birthday);
 
-            user.Validate();
-            user.AddProfile(Profile.CreateHostProfile(user.Name));
-            await _userRepository.Create(user);
-            await _autenticationRepository.Create(autenticationUser);
-            return UserResults.UserCreated(user);
+                user.Validate();
+                user.AddProfile(Profile.CreateHostProfile(user.Name));
+                await _userRepository.Create(user);
+                return UserResults.UserCreated(user);
+            }
+            catch (Exception ex)
+            {
+                return ResultBase.ApplicationErrorMessage(ex.Message);
+            }
         }
     }
 }

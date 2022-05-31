@@ -9,15 +9,11 @@ namespace Tmdb.Services.Handlers.Queries
     {
         private ITbdmSearchRepository _tmdbRepository;
 
-        public FindAllMoviesHandler(ITbdmSearchRepository tmdbRepository)
-        {
-            _tmdbRepository = tmdbRepository;
-        }
+        public FindAllMoviesHandler(ITbdmSearchRepository tmdbRepository) => _tmdbRepository = tmdbRepository;
 
         public async Task<ResultModel> Handle(FindAllMoviesRequest request, CancellationToken cancellationToken)
         {
-            var resultSearch = await _tmdbRepository.FindAllMovies();
-
+            var resultSearch = await _tmdbRepository.GetAllMovies();
 
             return MovieResult.ReturnMovies(resultSearch);
         }

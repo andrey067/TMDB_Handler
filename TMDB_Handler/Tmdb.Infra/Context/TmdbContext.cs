@@ -13,8 +13,7 @@ namespace Tmdb.Infra.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new UserMapping());
-            //builder.ApplyConfiguration(new MovieMapping());
+            builder.ApplyConfiguration(new UserMapping());            
         }
     }
 }

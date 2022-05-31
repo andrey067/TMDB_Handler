@@ -3,22 +3,15 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Tmdb.Core.DTOs;
 using Tmdb.Core.Results;
-using Tmdb.Infra.Interfaces;
 using Tmdb.Services.UseCases;
 
 namespace Tmdb.Services.Handlers.Queries
 {
     public class SearchMovieHandler : IRequestHandler<SearchMovieRequest, ResultModel>
     {
-        private readonly ITbdmSearchRepository _tbdmSearchRepository;
         private readonly IConfiguration _configuration;
 
-        public SearchMovieHandler(ITbdmSearchRepository tbdmSearchRepository, IConfiguration configuration)
-        {
-            _tbdmSearchRepository = tbdmSearchRepository;
-            _configuration = configuration;
-        }
-
+        public SearchMovieHandler(IConfiguration configuration) => _configuration = configuration;
 
         public async Task<ResultModel> Handle(SearchMovieRequest request, CancellationToken cancellationToken)
         {

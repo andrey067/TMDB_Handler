@@ -6,7 +6,7 @@ namespace Tmdb.Infra.Interfaces
     public interface ITbdmSearchRepository
     {
         [Get("/movie/popular")]
-        Task<TmdbDto> FindAllMovies();
+        Task<TmdbDto> GetAllMovies();
 
         [Get("/movie/{movieId}")]
         Task<TmdbResults> GetMovie([AliasAs("movieId")] int movieId);

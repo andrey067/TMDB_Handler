@@ -22,29 +22,45 @@ namespace Tmdb.Services.Handlers.Commands
 
         public async Task<ResultModel> Handle(AddWatchListCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUser(request.UserId);
-            if (user is null)
-                return UserResults.UserNotFound();
-
-            if (user.Profiles.ToList().Exists(x => x.Name == request.ProfileName) is false)
-                return UserResults.UserNotFound();
-
-            var tmdbdto = await _tmdbRepository.GetMovie(request.MovieId);
-            if (tmdbdto is null)
-                return MovieResult.NoMoviesFound();
-
-            var movie = _mapper.Map<Movie>(tmdbdto);
-            movie.Watchlist = true;
-
-            user.Profiles.ToList().ForEach(profile =>
+            try
             {
-                if (profile.Name == request.ProfileName)
-                    profile.Movies.Add(movie);
-            });
+                var user = await _userRepository.GetUser(request.UserId);
+                if (user is null)
+                    return UserResults.UserNotFound();
 
-            await _userRepository.Update(user);
+                if (user.Profiles.ToList().Exists(x => x.Name == request.ProfileName) is false)
+                    return UserResults.UserNotFound();
 
-            return MovieResult.AddWatchList(user);
+                var tmdbdto = await _tmdbRepository.GetMovie(request.MovieId);
+                if (tmdbdto is null)
+                    return MovieResult.NoMoviesFound();
+
+                var movie = _mapper.Map<Movie>(tmdbdto);
+                movie.Watchlist = true;
+
+                user.Profiles.ToList().ForEach(profile =>
+                {
+                    if (profile.Name == request.ProfileName)
+                    {
+                        if (profile.Movies.Any(movie => movie.Id.Equals(movie.Id)))
+                            profile.Movies.ForEach(m =>
+                            {
+                                if (movie.Id.Equals(m.Id))
+                                    m.Watchlist = true;
+                            });
+                        else
+                            profile.Movies.Add(movie);
+                    }
+                });
+
+                await _userRepository.Update(user);
+
+                return MovieResult.AddWatchList(user);
+            }
+            catch (Exception ex)
+            {
+                return ResultBase.ApplicationErrorMessage(ex.Message);
+            }
         }
     }
 }

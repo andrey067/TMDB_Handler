@@ -20,15 +20,6 @@ namespace Tmdb.Domain.Entities
             _errors = new List<string>();
         }
 
-        public User(string name, string email, DateTime birthday)
-        {
-            Name = name;
-            Email = email;
-            Birthday = birthday;
-            _profiles = new();
-            _errors = new List<string>();
-            Validate();
-        }
         public User(string name, string email, string password, DateTime birthday)
         {
             Name = name;
@@ -36,12 +27,12 @@ namespace Tmdb.Domain.Entities
             Birthday = birthday;
             Password = password;
             _errors = new List<string>();
+            _profiles = new();
             Validate();
         }
 
         //Autovalida
         public bool Validate() => base.Validate(new UserValidator(), this);
-        //public bool AutenticationValidate() => base.Validate(new AutententicationValidator(), this);
 
         public void AddProfile(Profile profile)
         {

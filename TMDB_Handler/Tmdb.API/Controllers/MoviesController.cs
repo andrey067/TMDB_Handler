@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tmdb.Core.DTOs;
 using Tmdb.Services.UseCases;
 
 namespace Tmdb.API.Controllers
 {
-    [Route("/api/v1/movie/")]
+    [Route("/api/v1/movies/")]
     public class MoviesController : BaseController
     {
         private readonly IMediator _mediator;
@@ -18,8 +19,8 @@ namespace Tmdb.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        [Route("FindAllMovies")]
+        [HttpGet]
+        [Route("find-all-movies")]
         //[Authorize]
         public async Task<IActionResult> FindAllMovies()
         {
@@ -29,7 +30,8 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpPut]
-        [Route("/api/v1/users/addmovie")]
+        [Route("add-movie")]
+        [Authorize]
         public async Task<IActionResult> AddMovieAsync([FromBody] AddMovieDto movieViewModel)
         {
             var movieCommand = _mapper.Map<AddMovieCommand>(movieViewModel);
@@ -39,7 +41,8 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/users/getmoviessuggested")]
+        [Route("get-movies-suggested")]
+        [Authorize]
         public async Task<IActionResult> GetMoviesSuggested([FromQuery] SuggestedDto suggestedDto)
         {
             var comandResult = await _mediator.Send(new GetMoviesSuggestedRequest(suggestedDto.UserId, suggestedDto.ProfileName));
@@ -48,7 +51,8 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/users/searchmovie")]
+        [Route("search-movie")]
+        [Authorize]
         public async Task<IActionResult> SearchMovie([FromQuery] string search)
         {
             var comandResult = await _mediator.Send(new SearchMovieRequest(search));
@@ -57,7 +61,8 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpPut]
-        [Route("/api/v1/users/addwatchlist")]
+        [Route("add-watch-list")]
+        [Authorize]
         public async Task<IActionResult> AddWatchList([FromQuery] AddWatchListDto addWatchListDto)
         {
             var addwatchlist = _mapper.Map<AddWatchListCommand>(addWatchListDto);
@@ -68,7 +73,8 @@ namespace Tmdb.API.Controllers
         }
 
         [HttpPut]
-        [Route("/api/v1/users/addwatched")]
+        [Route("add-watched")]
+        [Authorize]
         public async Task<IActionResult> AddWatched([FromQuery] AddWatchedDto addWatchListDto)
         {
             var addwatchlist = _mapper.Map<AddWatchedCommand>(addWatchListDto);

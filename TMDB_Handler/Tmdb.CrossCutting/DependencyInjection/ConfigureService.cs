@@ -34,15 +34,10 @@ namespace Tmdb.CrossCutting.DependencyInjection
             var connectionString = configuration.GetConnectionString("SqliteConnectionString") ?? "Data Source=tmdb.db";
             var AutenticationConnectionString = configuration.GetConnectionString("AuthenticationDb") ?? "Data Source=authenticationDb.db";
             services.AddSqlite<TmdbContext>(connectionString);
-            services.AddSqlite<AuthenticationContext>(AutenticationConnectionString);
         }
 
         public static async Task EnsureDBExists(IServiceProvider services)
         {
-            var autenticationContext = services.CreateScope().ServiceProvider.GetRequiredService<AuthenticationContext>();
-            await autenticationContext.Database.EnsureCreatedAsync();
-            await autenticationContext.Database.MigrateAsync();
-
             var tbmdbContext = services.CreateScope().ServiceProvider.GetRequiredService<TmdbContext>();
             await tbmdbContext.Database.EnsureCreatedAsync();
             await tbmdbContext.Database.MigrateAsync();

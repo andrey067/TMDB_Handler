@@ -10,7 +10,6 @@ namespace Tmdb.Infra.Context.Mappings
         {
             builder.Ignore(p => p.IsValid);
             builder.Ignore(p => p.Errors);
-            builder.Ignore(p => p.Password);
 
             builder.OwnsMany(x => x.Profiles, a =>
             {

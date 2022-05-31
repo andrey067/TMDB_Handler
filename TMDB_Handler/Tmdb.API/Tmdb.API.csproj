@@ -20,4 +20,7 @@
     <ProjectReference Include="..\Tmdb.Infra\Tmdb.Infra.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Fixtures" />
+	</ItemGroup>
 </Project>
