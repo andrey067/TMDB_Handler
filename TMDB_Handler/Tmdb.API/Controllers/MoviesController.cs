@@ -19,7 +19,7 @@ namespace Tmdb.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("find-all-movies")]
         [Authorize]
         public async Task<IActionResult> FindAllMovies()
