@@ -15,5 +15,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 WORKDIR /app
 EXPOSE 80
 COPY --from=build /app/published-app /app
-# CMD ASPNETCORE_URLS="http://*:$PORT" dotnet DemoMinimalApi.dll
-ENTRYPOINT [ "dotnet", "Tmdb.API.dll" ]
+CMD ASPNETCORE_URLS="http://*:$PORT" dotnet Tmdb.API.dll
+# ENTRYPOINT [ "dotnet", "Tmdb.API.dll" ]
