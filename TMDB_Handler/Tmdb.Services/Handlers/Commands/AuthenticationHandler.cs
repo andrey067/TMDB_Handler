@@ -32,7 +32,8 @@ namespace Tmdb.Services.Handlers.Commands
                 if (_argon2IdHasher.VerifyHashedText(request.Password, user.Password) is false)
                     return AuthenticationResult.EmailOrPassordInvalid();
 
-                return AuthenticationResult.Authenticated(_tokeGenerator.GenerateToken(user.Name));
+                return AuthenticationResult.Authenticated(new { profilename = user.Name, Email = user.Email, Token = _tokeGenerator.GenerateToken(user.Name) });
+
             }
             catch (Exception ex)
             {

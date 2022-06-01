@@ -21,7 +21,7 @@ namespace Tmdb.API.Controllers
 
         [HttpGet]
         [Route("find-all-movies")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> FindAllMovies()
         {
             var result = await _mediator.Send(new FindAllMoviesRequest());

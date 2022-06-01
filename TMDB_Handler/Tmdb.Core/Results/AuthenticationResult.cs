@@ -12,13 +12,13 @@
             };
         }
 
-        public static ResultModel Authenticated(string token)
+        public static ResultModel Authenticated(object user)
         {
             return new ResultModel
             {
                 Message = "Autenticado com sucesso",
                 Success = true,
-                Data = token
+                Data = user
             };
         }
     }

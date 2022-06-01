@@ -28,7 +28,7 @@ namespace Tmdb.API.Controllers
             var userCommand = _mapper.Map<CreateUserCommand>(userViewModel);
             var resultadoCommando = await _mediator.Send(userCommand);
 
-            return Ok(resultadoCommando);
+            return Ok(resultadoCommando.Data);
         }
 
         [HttpGet]
