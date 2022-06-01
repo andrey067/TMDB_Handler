@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMDB_Handler", "TMDB_Handler", "{F9EC8B65-8C63-45A3-BBF1-4E6B6A555B31}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.API", "TMDB_Handler\Tmdb.API\Tmdb.API.csproj", "{B8ED7B3F-185A-42CD-BF7E-D95CE166614A}"
 EndProject
@@ -19,11 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.CrossCutting", "TMDB_H
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F361DC43-90EE-4EFB-AF67-DC6C3264119B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Infra.Tests", "TMDB_Handler\Tests\Tmdb.Infra.Tests\Tmdb.Infra.Tests.csproj", "{06A30107-3D64-4C08-99D8-FC3694F1048B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Infra.Tests", "TMDB_Handler\Tests\Tmdb.Infra.Tests\Tmdb.Infra.Tests.csproj", "{06A30107-3D64-4C08-99D8-FC3694F1048B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixtures", "TMDB_Handler\Tests\Fixtures\Fixtures.csproj", "{C0F2DC5E-4688-47EC-8602-910F5FF06618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fixtures", "TMDB_Handler\Tests\Fixtures\Fixtures.csproj", "{C0F2DC5E-4688-47EC-8602-910F5FF06618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tmdb.Integration.Tests", "TMDB_Handler\Tests\Tmdb.Integration.Tests\Tmdb.Integration.Tests.csproj", "{F5CF5F0A-9BF5-45DB-BB9E-69BB258C6E23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tmdb.Integration.Tests", "TMDB_Handler\Tests\Tmdb.Integration.Tests\Tmdb.Integration.Tests.csproj", "{F5CF5F0A-9BF5-45DB-BB9E-69BB258C6E23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
